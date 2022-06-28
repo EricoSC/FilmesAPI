@@ -23,6 +23,7 @@ builder.Services.AddScoped<EmailService, EmailService>();
 
 
 
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -30,7 +31,9 @@ if (app.Environment.IsDevelopment())
 {
     //app.UseSwagger();
     //app.UseSwaggerUI();
+    builder.Configuration.AddUserSecrets<Program>();
 }
+
 
 app.UseAuthorization();
 
