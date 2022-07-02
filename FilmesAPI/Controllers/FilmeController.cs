@@ -4,6 +4,7 @@ using FilmesAPI.Data.Dtos.FilmeDTO;
 using FilmesAPI.Model;
 using FilmesAPI.Service;
 using FluentResults;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FilmesAPI.Controllers
@@ -21,6 +22,7 @@ namespace FilmesAPI.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "admin")]
         public IActionResult AddFilm(CreateFilmeDto filmedto)
         {
             ReadFilmeDto readDto = _filmeService.AddFilmService(filmedto);
@@ -51,14 +53,14 @@ namespace FilmesAPI.Controllers
             Result resultado = _filmeService.UpdateFilme(id, filmeDto);
             if (resultado.IsFailed) return NotFound();
             else return NoContent();
-            
+
         }
 
         [HttpDelete("{id}")]
         public IActionResult DeleteFilm(int id)
         {
             Result result = _filmeService.DeleteFilme(id);
-            return result.IsFailed? NotFound() : NoContent();
+            return result.IsFailed ? NotFound() : NoContent();
         }
     }
 }

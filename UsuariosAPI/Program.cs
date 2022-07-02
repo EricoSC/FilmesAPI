@@ -31,7 +31,7 @@ if (app.Environment.IsDevelopment())
 {
     //app.UseSwagger();
     //app.UseSwaggerUI();
-    builder.Configuration.AddUserSecrets<Program>();
+    //builder.Configuration.AddUserSecrets<Program>();
 }
 
 

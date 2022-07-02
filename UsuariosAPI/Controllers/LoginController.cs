@@ -21,5 +21,17 @@ namespace UsuariosAPI.Controllers
             Result resultado = _loginService.LogaUsuario(request);
             return resultado.IsFailed ? Unauthorized() : Ok(resultado.Successes.FirstOrDefault());
         }
+        [HttpPost("/solicita-reset")]
+        public IActionResult ResetPassword(PasswordResetRequest request)
+        {
+            Result resultado = _loginService.ResetPass(request);
+            return resultado.IsFailed ? Unauthorized() : Ok(resultado.Successes.FirstOrDefault());
+        }
+        [HttpPost("/efetua-reset")]
+        public IActionResult ChangePassword(ChangePasswordRequest request)
+        {
+            Result resultado = _loginService.ChangePass(request);
+            return resultado.IsFailed ? Unauthorized() : Ok(resultado.Successes.FirstOrDefault());
+        }
     }
 }
